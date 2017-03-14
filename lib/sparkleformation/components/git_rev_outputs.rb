@@ -3,7 +3,13 @@ SparkleFormation.component(:git_rev_outputs) do
   ENV['git_rev']  ||= ::IO.popen('git rev-parse HEAD').read.chomp
 
   outputs do
-    set!('Git repository', :description => 'Source code origin', :value => ENV['git_repo'])
-    set!('Git revision', :description => 'Source code revision', :value => ENV['git_rev'])
+    git_repository do
+      description 'Source code origin'
+      value ENV['git_repo']
+    end
+    git_revision do
+      description 'Source code revision'
+      value ENV['git_rev']
+    end
   end
 end
